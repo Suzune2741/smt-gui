@@ -65,9 +65,8 @@ jobs:
       - browser-tools/install-chrome # must be before node/install-packages
       - node/install-packages
       - run:
-          name: "install Smalruby's scratch-vm"
-          command: |
-              (cd node_modules/scratch-vm && npm install && $(npm bin)/webpack --colors --bail --silent)
+          name: install scratch-vm for Smalruby
+          command: cd node_modules/scratch-vm && npm install && $(npm bin)/webpack --colors --bail
       - run:
           name: Lint
           command: npm run test:lint -- --quiet --output-file test-results/eslint-results.xml --format junit
@@ -103,9 +102,8 @@ jobs:
       - browser-tools/install-chrome # must be before node/install-packages
       - node/install-packages
       - run:
-          name: "install Smalruby's scratch-vm"
-          command: |
-              (cd node_modules/scratch-vm && npm install && $(npm bin)/webpack --colors --bail --silent)
+          name: install scratch-vm for Smalruby
+          command: cd node_modules/scratch-vm && npm install && $(npm bin)/webpack --colors --bail
       - *save_git_cache
       - *save_npm_cache
   lint:
