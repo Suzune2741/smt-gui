@@ -1,4 +1,4 @@
-export default {
+ export default {
     "gui.menuBar.seeProjectPage": "プロジェクトページを見る",
     "gui.loader.creating": "プロジェクトを作成中...",
     "gui.smalruby3.crashMessage.description":
@@ -72,6 +72,7 @@ export default {
     "smalrubotS1.positionsMenu.touch": "タッチ",
     "smalrubotS1.positionsMenu.light": "光",
     "smalrubotS1.positionsMenu.sound": "音",
+    "gui.menuBar.uploadToServer": "マイコンに書き込み",
     "gui.extension.sample.name": "サンプル",
     "gui.extension.sample.description": "サンプル",
     "sample.name": "サンプル",
@@ -81,4 +82,14 @@ export default {
     "sample.command3": "コマンド[TEXT1] [NUM1]",    
     "sample.flag0": "真偽",    
     "sample.value0": "値",    
+    "gui.extension.sample2.name": "サンプル2",
+    "gui.extension.sample2.description": "サンプル2",
+    "sample2.name": "サンプル2",
+    "sample2.command0": "コマンド2",
+    "sample2.command1": "コマンド2[TEXT][NUM]",
+    "sample2.command2": "コマンド2[TEXT1]",
+    "sample2.command3": "コマンド2[TEXT1] [NUM1]",
+    "sample2.flag0": "真偽2",    
+    "sample2.value0": "値2 [TEXT]",
+    "sample2.value1": "値2 [NUM]"
 };

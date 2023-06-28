@@ -33,6 +33,7 @@ import SB3Downloader from "../../containers/sb3-downloader.jsx";
 import DeletionRestorer from "../../containers/deletion-restorer.jsx";
 import TurboMode from "../../containers/turbo-mode.jsx";
 import MenuBarHOC from "../../containers/menu-bar-hoc.jsx";
+import RubyUploader from '../../containers/ruby-uploader.jsx'; // kani-robo
 
 import { openTipsLibrary } from "../../reducers/modals";
 import { setPlayer } from "../../reducers/mode";
@@ -175,6 +176,7 @@ class MenuBar extends React.Component {
             "handleRestoreOption",
             "getSaveToComputerHandler",
             "restoreOptionMessage",
+	    "getSaveRubyToComputerHandler"
         ]);
     }
     componentDidMount() {
@@ -266,18 +268,18 @@ class MenuBar extends React.Component {
             }
         };
     }
-    getSaveRubyToComputerHandler(downloadProjectCallback) {
+    getSaveRubyToComputerHandler(uploadProjectCallback) {
         return () => {
             this.props.onRequestCloseFile();
-            downloadProjectCallback();
-            if (this.props.onProjectTelemetryEvent) {
-                const metadata = collectMetadata(
-                    this.props.vm,
-                    this.props.projectTitle,
-                    this.props.locale
-                );
-                this.props.onProjectTelemetryEvent("projectDidSave", metadata);
-            }
+            uploadProjectCallback();
+//            if (this.props.onProjectTelemetryEvent) {
+//                const metadata = collectMetadata(
+//                    this.props.vm,
+//                    this.props.projectTitle,
+//                    this.props.locale
+//                );
+//                this.props.onProjectTelemetryEvent("projectDidSave", metadata);
+//            }
         };
     }
     handleLanguageMouseUp(e) {
@@ -550,12 +552,33 @@ class MenuBar extends React.Component {
                                                 >
                                                     <FormattedMessage
                                                         defaultMessage="Save to your computer"
-                                                        description="Menu bar item for downloading a project to your computer" // eslint-disable-line max-len
+                                                        description="Menu bar item for downloading a project to your computer"
                                                         id="gui.menuBar.downloadToComputer"
                                                     />
                                                 </MenuItem>
                                             )}
                                         </SB3Downloader>
+                                    </MenuSection>
+				    <MenuSection>
+                                        <RubyUploader>
+                                            {(
+                                                className, _,
+						uploadProject
+                                            ) => (
+                                                <MenuItem
+                                                    className={className}
+                                                    onClick={this.getSaveRubyToComputerHandler(
+							uploadProject
+                                                    )}
+                                                >
+                                                    <FormattedMessage
+                                                        defaultMessage="Send to MicroComputer"
+                                                        description="Menu bar item for send to MicroComputer"
+                                                        id="gui.menuBar.uploadToServer"
+                                                    />
+                                                </MenuItem>
+                                            )}
+                                        </RubyUploader>
                                     </MenuSection>
                                 </MenuBarMenu>
                             </div>

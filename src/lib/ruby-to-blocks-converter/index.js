@@ -9,29 +9,11 @@ import Variable from "scratch-vm/src/engine/variable";
 import Primitive from "./primitive";
 import { RubyToBlocksConverterError } from "./errors";
 
-import MotionConverter from "./motion";
-import LooksConverter from "./looks";
-import SoundConverter from "./sound";
-import EventConverter from "./event";
 import ControlConverter from "./control";
-import SensingConverter from "./sensing";
 import OperatorsConverter from "./operators";
 import VariablesConverter from "./variables";
 import MyBlocksConverter from "./my-blocks";
-import MusicConverter from "./music";
-import PenConverter from "./pen";
-import MicroBitConverter from "./microbit";
-import MicroBitMoreConverter from "./microbit_more";
-import EV3Converter from "./ev3";
-import Wedo2Converter from "./wedo2";
-import GdxForConverter from "./gdx_for";
-import MeshConverter from "./mesh";
-import SmalrubotS1Converter from "./smalrubot_s1";
-import BoostConverter from "./boost";
-import TranslateConverter from "./translate";
-import MakeyMakeyConverter from "./makeymakey";
-import VideoConverter from "./video";
-import Text2SpeechConverter from "./text2speech";
+import Sample2BlocksConverter from "./sample2";
 
 const messages = defineMessages({
     couldNotConvertPremitive: {
@@ -54,17 +36,11 @@ const ColorRegexp = /^#[0-9a-fA-F]{6}$/;
 // from scratch-vm/src/serialization/sb3.js
 const CORE_EXTENSIONS = [
     "argument",
-    "colour",
     "control",
     "data",
-    "event",
-    "looks",
     "math",
-    "motion",
     "operator",
     "procedures",
-    "sensing",
-    "sound",
 ];
 
 // from scratch-vm/src/serialization/sb3.js
@@ -85,36 +61,16 @@ class RubyToBlocksConverter {
         this.vm = vm;
         this._translator = (message) => message.defaultMessage;
         this._converters = [
-            MusicConverter,
-            PenConverter,
-            EV3Converter,
-            GdxForConverter,
-            MeshConverter,
-            SmalrubotS1Converter,
-            BoostConverter,
-            TranslateConverter,
-            MakeyMakeyConverter,
-
-            MotionConverter,
-            LooksConverter,
-            SoundConverter,
             ControlConverter,
-            SensingConverter,
             OperatorsConverter,
             VariablesConverter,
             MyBlocksConverter,
+	    Sample2BlocksConverter,
         ];
         this._receiverToMethods = {};
         this.reset();
-
         [
-            EventConverter,
             ControlConverter,
-            MicroBitConverter,
-            VideoConverter,
-            Text2SpeechConverter,
-            Wedo2Converter,
-            MicroBitMoreConverter,
         ].forEach((x) => x.register(this));
     }
 
